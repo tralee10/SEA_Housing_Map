@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Titillium Web', serif;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#info {
+    z-index: 1000;
+    position: absolute;
+    width: 400px;
+    top: 1%;
+    left: 1%;
+    padding: 20px;
+    background: #343a40;
+    color: white;
+}
+
+#title {
+    font-size: 25px;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 15px;
+}
+
+#title span {
+    font-size: 14px;
+    float: right;
+    margin-right: 10px;
+}
+
+#desc {
+    text-align: center;
+    color: lightgray;
+    font-size: medium;
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+
+#collision-count {
+    margin: 0;
+    text-align: center;
+    color: orange;
+    font-size: 50px;
+}
+
+#injury-chart {
+    margin-top: 20px;
+}
+
+.bar-container {
+    margin: 10px 0;
+}
+
+.bar-label {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.bar {
+    height: 25px;
+    background-color: steelblue;
+    width: 0;
+    transition: width 0.5s ease;
+}
+
+.bar-value {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+#footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: lightgray;
+}
+
+#legend {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 140px;
+    background: #fff;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    padding: 10px;
+    border-radius: 3px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.break {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+
+.dot {
+    display: inline-block;
+    margin-top: 5px;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.dot-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-style: italic;
+}

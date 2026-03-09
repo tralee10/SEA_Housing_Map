@@ -18,7 +18,7 @@ legend.innerHTML = `
 
 async function loadData() {
 
-    const response = await fetch('assets/built_units.geojson');
+    const response = await fetch('assets/2020_population.geojson');
     const data = await response.json();
 
     map.on('load', () => {

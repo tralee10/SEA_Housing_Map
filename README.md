@@ -5,4 +5,4 @@ Seattle Housing Supply &amp; Population Map Dashboard
 https://tralee10.github.io/SEA_Housing_Map/index.html
 
 ### To Map
-https://tralee10.github.io/SEA_Housing_Map/pop_map.html
+https://tralee10.github.io/SEA_Housing_Map/house_map.html

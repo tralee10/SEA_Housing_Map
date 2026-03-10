@@ -10,15 +10,40 @@ let map = new mapboxgl.Map({
 // Legend
 const legend = document.getElementById('legend');
 legend.innerHTML = `
-    <strong>Population 2025</strong>
-    <p><i class="dot" style="background:#4DA3FF; width:8px; height:8px;"></i> Small Population</p>
-    <p><i class="dot" style="background:#4DA3FF; width:16px; height:16px;"></i> Medium Population</p>
-    <p><i class="dot" style="background:#4DA3FF; width:24px; height:24px;"></i> Large Population</p>
+    <strong>Development Status</strong>
+<p>
+<i class="dot" style="background:#4DA3FF; width:12px; height:12px;"></i>
+Permit Issued
+</p>
+
+<p>
+<i class="dot" style="background:#FF6B6B; width:12px; height:12px;"></i>
+Construction Completed
+</p>
+
+<br>
+
+<strong>Net Units Permitted</strong>
+
+<p>
+<i class="dot" style="background:#999; width:8px; height:8px;"></i>
+Small Development
+</p>
+
+<p>
+<i class="dot" style="background:#999; width:16px; height:16px;"></i>
+Medium Development
+</p>
+
+<p>
+<i class="dot" style="background:#999; width:24px; height:24px;"></i>
+Large Development
+</p>
 `;
 
 async function loadData() {
 
-    const response = await fetch('assets/2020_population.geojson');
+    const response = await fetch('assets/built_units.geojson');
     const data = await response.json();
 
     map.on('load', () => {
@@ -38,16 +63,41 @@ async function loadData() {
             }
         });
 
-        // Proportional Symbols Layer
+
+        // Time Slider (Year Finalized)
         map.addLayer({
-            id: 'population-symbols',
+            id: 'finaled-symbols',
             type: 'circle',
             source: 'tracts',
             paint: {
                 'circle-radius': [
                     'interpolate',
                     ['linear'],
-                    ['sqrt', ['get', 'Population 2025']],
+                    ['sqrt', ['get', 'Net Units Permitted']],
+                    0, 0,
+                    50, 5,
+                    100, 10,
+                    200, 20,
+                    300, 30
+                ],
+                'circle-color': '#FF6B6B',
+                'circle-opacity': 0.75,
+                'circle-stroke-width': 1,
+                'circle-stroke-color': 'white'
+            }
+        });
+
+        
+        // Time Slider (Year Issued)
+        map.addLayer({
+            id: 'permit-symbols',
+            type: 'circle',
+            source: 'tracts',
+            paint: {
+                'circle-radius': [
+                    'interpolate',
+                    ['linear'],
+                    ['sqrt', ['get', 'Net Units Permitted']],
                     0, 0,
                     50, 5,
                     100, 10,
@@ -61,20 +111,24 @@ async function loadData() {
             }
         });
 
+
+
         // Popup
-        map.on('click', 'population-symbols', e => {
+        map.on('click', 'permit-symbols', e => {
 
             const props = e.features[0].properties;
 
             new mapboxgl.Popup()
                 .setLngLat(e.lngLat)
                 .setHTML(`
-                    <strong>GEOID:</strong> ${props.GEOID}<br>
-                    <strong>Population 2025:</strong> ${props["Population 2010"]}<br>
-                    <strong>Housing Units 2025:</strong> ${props["Housing Units 2025"]}<br>
-                    <strong>Population Density:</strong> ${props["Population Density (people per acre for most recent year)"]}<br>
-                    <strong>Housing Unit Density:</strong> ${props["Housing Unit Density (units per acre for most recent year)"]}<br>
-                    <strong>New Units Permitted:</strong> ${props["New Units Permitted"]}
+                    <strong>Permit Type:</strong> ${props["Type of Permit"]}<br>
+                    <strong>Dwelling Type:</strong> ${props["Type of Dwelling Unit per Code"]}<br>
+                    <strong>New Units:</strong> ${props["New Units Permitted"]}<br>
+                    <strong>Net Units:</strong> ${props["Net Units Permitted"]}<br>
+                    <strong>Neighborhood:</strong> ${props["Neighborhood"]}<br>
+                    <strong>Urban Village:</strong> ${props["Urban Village Name"]}<br>
+                    <strong>Council District:</strong> ${props["Council District"]}<br>
+                    <strong>Year Issued:</strong> ${props["Year Issued"]}
                 `)
                 .addTo(map);
         });
@@ -108,3 +162,39 @@ reset.addEventListener('click', () => {
 });
 
 loadData();
+
+
+// Time Slider Logic (Year Issued)
+
+const slider = document.getElementById('year-slider');
+const yearLabel = document.getElementById('year-label');
+
+slider.addEventListener('input', (e) => {
+
+    const year = parseInt(e.target.value);
+    yearLabel.textContent = year;
+
+    map.setFilter('permit-symbols', [
+        '==',
+        ['get', 'Year Issued'],
+        year
+    ]);
+
+});
+
+// Time Slider Logic (Year Finaled)
+const finaledSlider = document.getElementById('finaled-slider');
+const finaledLabel = document.getElementById('finaled-label');
+
+finaledSlider.addEventListener('input', (e) => {
+
+    const year = parseInt(e.target.value);
+    finaledLabel.textContent = year;
+
+    map.setFilter('finaled-symbols', [
+        '==',
+        ['get', 'Year Finaled'],
+        year
+    ]);
+
+});

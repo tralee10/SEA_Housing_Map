@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Seattle Collision Dashboard</title>
+    <title>Seattle Housing Dashboard</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web|Oswald" rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
@@ -29,6 +29,40 @@
         More text goes here - about dashboard and/or functions
         </p>
 
+        <!-- Time Slider (Year Issued) -->
+        <div id="time-control">
+            <label>
+                <strong>Year Issued:</strong>
+                <span id="year-label">2010</span>
+            </label>
+
+            <input
+                id="year-slider"
+                type="range"
+                min="2005"
+                max="2025"
+                step="1"
+                value="2010"
+            >
+        </div>
+
+        <!--Time Slider (Year Finaled)-->
+        <div id="finaled-control">
+            <label>
+                <strong>Year Finished:</strong>
+                <span id="finaled-label">2010</span>
+            </label>
+
+            <input
+                id="finaled-slider"
+                type="range"
+                min="2005"
+                max="2025"
+                step="1"
+                value="2010"
+            >
+        </div>
+
         <div id="injury-chart"></div>
 
         <div id="footer">
@@ -41,6 +75,8 @@
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
     <script src="js/main.js"></script>
+
+</div>
 </body>
 
 </html>

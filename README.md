@@ -19,19 +19,34 @@ This project aims to provide insight into how effectively housing development re
 - **Housing Policy Researchers**: assessessing the data to understand housing trends in reference to population data.
 - **Students & General Public**: exploring the map for personal or educational purposes, getting a better idea of what is going on within different communities.
 
-### Functions
+## Features & Functionality
 **Time-Based Sliders**
 > - The **Year Issued** slider alters which points are shown on the map based on the year in which the building permit was issued. 
 > - The **Year Finished** slider alters which points are shown on the map based on the year in which the building was completed.
 
-**Dropdowns**
+**Dropdown Menus**
 > - The **Permit Type** dropdown filters the data being viewed at one time based on the type of permit they have, either construction or demolition.
 > - The **Dwelling Type** dropdown filters the data being viewed at one time based on the type of dwelling being built. This includes things like "Detached Single-Family", "Apartment", "Accessory Dwelling, Attached", etc.
 > - The **Neighborhood** dropdown filters the data being viewed at one time based on the neighborhood that the permits are set in. In Seattle, this includes places like "Northeast", "Northwest", and "Ballard".
 > - The **Urban Village** dropdown filters the data being viewed at one time based on the urban village that the permits are set in. In Seattle, this includes places like "University District Northwest", "Roosevelt", and "Capitol Hill".
 
 **Dynamic Bar Chart**
-> - The dynamic bar chart updates based on the **Year**, **Permit Type**, **Dwelling Type**, **Neighborhood**, and/or **Urban Village** that is selected.
+> - The dynamic bar chart shows the most common locations for new housing units.
+> - Chart updates based on the **Year**, **Permit Type**, **Dwelling Type**, **Neighborhood**, and/or **Urban Village** that is selected.
+
+
+## Screenshots
+#### The following images illustrate the key features of the Seattle Housing Permit Supply & Population Map Dashboard:
+
+### Proportional Symbols Map
+![image](imgs/house_map.png)
+
+### Functions Bar (Time Slider, Dropdown Menus, Dynamic Bar Chart)
+![image](imgs/house_func.png)
+
+### Pop-Up Details
+![image](imgs/house_popup.png)
+
 
 ## Data
 ### Sources

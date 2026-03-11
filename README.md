@@ -4,11 +4,7 @@ Seattle Housing Supply &amp; Population Map Dashboard
 **_Created by_** Travis Lee, Kevin Chao, and Kaitlyn Billington
 
 ## URLs
-> **WebPage:** https://tralee10.github.io/SEA_Housing_Map/index.html
-
-> **Permit Map:** https://tralee10.github.io/SEA_Housing_Map/house_map.html
-
-> **Population Map:** https://tralee10.github.io/SEA_Housing_Map/pop_map.html
+https://tralee10.github.io/SEA_Housing_Map/index.html
 
 ## Project Overview
 This project aims to provide insight into how effectively housing development responds to demographic changes. By visualizing these relationships spatially, users can better understand where housing supply may be keeping up with demand and where gaps may exist. The broader impact includes improving transparency in housing development patterns and potentially informing city planners, policymakers, researchers, and residents.

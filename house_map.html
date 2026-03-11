@@ -9,24 +9,28 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
     <div id="info">
         <div id="title">
-            Seattle Housing Supply & Population Map
+            Seattle Housing Permit & Supply Dashboard
             <span id="reset"><a href="#">Reset Map</a></span>
         </div>
 
         <p class="description">
-        This dashboard visualizes housing supply and population in Seattle from 2010-2020 using proportional symbols.
-        Different sizes represent the number of houses in an area.
-        Click on a point to view detailed collision information.
+            This dashboard visualizes housing permits & housing supply and population in Seattle from 2005-2025 using proportional symbols.
+            Different sizes represent the number of permits in an area.
+            Click on a point to view detailed information about a permit.
         </p>
 
-
         <p class="description">
-        More text goes here - about dashboard and/or functions
+            Explore permits in Seattle by year, permit type, dwelling type, neighborhood, and urban area. The chart will update upon selecting different attributes, showing the 
+            most common locations for new housing units.
         </p>
 
         <!-- Time Slider (Year Issued) -->
@@ -35,39 +39,138 @@
                 <strong>Year Issued:</strong>
                 <span id="year-label">2010</span>
             </label>
-
-            <input
-                id="year-slider"
-                type="range"
-                min="2005"
-                max="2025"
-                step="1"
-                value="2010"
-            >
+            <input id="year-slider" type="range" min="2005" max="2025" step="1" value="2010">
         </div>
 
-        <!--Time Slider (Year Finaled)-->
+        <!-- Time Slider (Year Finaled) -->
         <div id="finaled-control">
             <label>
-                <strong>Year Finished:</strong>
+                <strong>Year Finalized:</strong>
                 <span id="finaled-label">2010</span>
             </label>
-
-            <input
-                id="finaled-slider"
-                type="range"
-                min="2005"
-                max="2025"
-                step="1"
-                value="2010"
-            >
+            <input id="finaled-slider" type="range" min="2005" max="2025" step="1" value="2010">
         </div>
 
-        <div id="injury-chart"></div>
+        <!-- Filters -->
+        <div id="filter-control">
+
+            <!-- Permit Type Drop Down -->
+            <label><strong>Permit Type</strong></label>
+            <select id="permit-filter">
+                <option value="All">All Permit Types</option>
+                <option value="Construction Permit">Construction Permit</option>
+                <option value="Demolition Permit">Demolition Permit</option>
+                <option value="Phased Project Permit">Phased Project Permit</option>
+                <option value="PTS PERMIT">PTS PERMIT</option>
+            </select>
+
+            <!-- Dwelling Type Drop-Down -->
+            <label><strong>Dwelling Type</strong></label>
+            <select id="dwelling-filter">
+                <option value="All">All Dwelling Types</option>
+                <option value="Accessory Caretaker">Accessory Caretaker</option>
+                <option value="Accessory Dwelling, Attached">Accessory Dwelling, Attached</option>
+                <option value="Accessory Dwelling, Detached">Accessory Dwelling, Detached</option>
+                <option value="Accessory Live/Work">Accessory Live/Work</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Assisted Living">Assisted Living</option>
+                <option value="Congregate Housing">Congregate Housing</option>
+                <option value="Cottage">Cottage</option>
+                <option value="Demolition Only">Demolition Only</option>
+                <option value="Detached Single-Family">Detached Single-Family</option>
+                <option value="Multifamily Ground Level Apartment">Multifamily Ground Level Apartment</option>
+                <option value="Multifamily Ground Level Tandem Dwelling">Multifamily Ground Level Tandem Dwelling</option>
+                <option value="Multifamily Ground Level Townhouse">Multifamily Ground Level Townhouse</option>
+                <option value="Multifamily Non-Ground Level Dwelling">Multifamily Non-Ground Level Dwelling</option>
+                <option value="Multifamily Other">Multifamily Other</option>
+                <option value="No Dwelling Units">No Dwelling Units</option>
+                <option value="Not Reviewed">Not Reviewed</option>
+                <option value="Rowhouse">Rowhouse</option>
+                <option value="Small Efficiency Dwelling">Small Efficiency Dwelling</option>
+                <option value="Townhouse">Townhouse</option>
+            </select>
+
+            <!-- Neighborhood Drop Down -->
+            <label><strong>Neighborhood</strong></label>
+            <select id="neigh-filter">
+                <option value="All">All Neighborhoods</option>
+                <option value="Ballard">Ballard</option>
+                <option value="Central">Central</option>
+                <option value="Delridge Neighborhoods">Delridge Neighborhoods</option>
+                <option value="Downtown">Downtown</option>
+                <option value="East">East</option>
+                <option value="Greater Duwamish">Greater Duwamish</option>
+                <option value="Lake Union">Lake Union</option>
+                <option value="Magnolia/Queen Anne">Magnolia/Queen Anne</option>
+                <option value="North">North</option>
+                <option value="Northeast">Northeast</option>
+                <option value="Northwest">Northwest</option>
+                <option value="Southeast">Southeast</option>
+                <option value="Southwest">Southwest</option>
+            </select>
+
+            <!-- Urban Village Drop Down -->
+            <label><strong>Urban Village Name</strong></label>
+            <select id="village-filter">
+                <option value="All">All Urban Villages</option>
+                <option value="12th Avenue">12th Avenue</option>
+                <option value="23rd & Union-Jackson">23rd & Union-Jackson</option>
+                <option value="Admiral">Admiral</option>
+                <option value="Aurora-Licton Springs">Aurora-Licton Springs</option>
+                <option value="Ballard">Ballard</option>
+                <option value="Ballard-Interbay-Northend">Ballard-Interbay-Northend</option>
+                <option value="Belltown">Belltown</option>
+                <option value="Bitter Lake Village">Bitter Lake Village</option>
+                <option value="Capitol Hill">Capitol Hill</option>
+                <option value="Chinatown-International District">Chinatown-International District</option>
+                <option value="Columbia City">Columbia City</option>
+                <option value="Commercial Core">Commercial Core</option>
+                <option value="Crown Hill">Crown Hill</option>
+                <option value="Denny Triangle">Denny Triangle</option>
+                <option value="Eastlake">Eastlake</option>
+                <option value="First Hill">First Hill</option>
+                <option value="Fremont">Fremont</option>
+                <option value="Greater Duwamish">Greater Duwamish</option>
+                <option value="Green Lake">Green Lake</option>
+                <option value="Greenwood-Phinney Ridge">Greenwood-Phinney Ridge</option>
+                <option value="Lake City">Lake City</option>
+                <option value="Madison-Miller">Madison-Miller</option>
+                <option value="Morgan Junction">Morgan Junction</option>
+                <option value="Mt Baker">Mt Baker</option>
+                <option value="North Beacon Hill">North Beacon Hill</option>
+                <option value="Northgate">Northgate</option>
+                <option value="Othello">Othello</option>
+                <option value="Outside Villages">Outside Villages</option>
+                <option value="Pike/Pine">Pike/Pine</option>
+                <option value="Pioneer Square">Pioneer Square</option>
+                <option value="Rainier Beach">Rainier Beach</option>
+                <option value="Ravenna">Ravenna</option>
+                <option value="Roosevelt">Roosevelt</option>
+                <option value="South Lake Union">South Lake Union</option>
+                <option value="South Park">South Park</option>
+                <option value="University Campus">University Campus</option>
+                <option value="University District Northwest">University District Northwest</option>
+                <option value="Upper Queen Anne">Upper Queen Anne</option>
+                <option value="Uptown">Uptown</option>
+                <option value="Wallingford">Wallingford</option>
+                <option value="West Seattle Junction">West Seattle Junction</option>
+                <option value="Westwood-Highland Park">Westwood-Highland Park</option>
+            </select>
+
+        </div>
+
+
+        <!-- CHART -->
+        <div id="chart-section">
+            <h3>Top Locations by New Housing Units</h3>
+            <canvas id="unitsChart"></canvas>
+        </div>
 
         <div id="footer">
-            Data source: Seattle GeoData
+            <a href="index.html">Back to Homepage</a> | 
+            Data Source: <a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::built-units-since-2010/about" target="_blank">Seattle GeoData</a>
         </div>
+
     </div>
 
     <div id="map"></div>
@@ -75,8 +178,6 @@
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
     <script src="js/main.js"></script>
-
-</div>
 </body>
 
 </html>

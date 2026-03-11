@@ -17,14 +17,15 @@ This project aims to provide insight into how effectively housing development re
 - Enable drivers and commuters to navigate more safely.
 
 ### Target Audience
-- Seattle City Planners – mini explanation on how it benefits.
-- Housing Policy Researchers – mini explanation.
-- Students & General Public – mini explanation.
+- **Seattle City Planners**: utilizing the map for informed decision-making when planning future developments.
+- **Housing Policy Researchers**: assessessing the data to understand housing trends in reference to population data.
+- **Students & General Public**: exploring the map for personal or educational purposes, getting a better idea of what is going on within different communities.
 
 ### Functions
 **Time-Based Sliders**
 > - The **Year Issued** slider alters which points are shown on the map based on the year in which the building permit was issued. 
 > - The **Year Finished** slider alters which points are shown on the map based on the year in which the building was completed. 
+
 
 **Dropdowns**
 > - The **Permit Type** dropdown filters the data being viewed at one time based on the type of permit they have, either construction or demolition.

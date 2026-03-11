@@ -28,7 +28,7 @@ This project aims to provide insight into how effectively housing development re
 > - The **Permit Type** dropdown filters the data being viewed at one time based on the type of permit they have, either construction or demolition.
 > - The **Dwelling Type** dropdown filters the data being viewed at one time based on the type of dwelling being built. This includes things like "Detached Single-Family", "Apartment", "Accessory Dwelling, Attached", etc.
 > - The **Neighborhood** dropdown filters the data being viewed at one time based on the neighborhood that the permits are set in. In Seattle, this includes places like "Northeast", "Northwest", and "Ballard".
-> - The **Urban Village Name** dropdown filters the data being viewed at one time based on the urban village that the permits are set in. In Seattle, this includes places like "University District Northwest", "Roosevelt", and "Capitol Hill".
+> - The **Urban Village** dropdown filters the data being viewed at one time based on the urban village that the permits are set in. In Seattle, this includes places like "University District Northwest", "Roosevelt", and "Capitol Hill".
 
 **Dynamic Bar Chart**
 > - The dynamic bar chart updates based on the **Year**, **Permit Type**, **Dwelling Type**, **Neighborhood**, and/or **Urban Village** that is selected.

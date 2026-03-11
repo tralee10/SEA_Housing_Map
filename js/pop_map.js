@@ -2,7 +2,7 @@ mapboxgl.accessToken =
             'pk.eyJ1IjoidHJhbGVlMTAiLCJhIjoiY202cmp6MTd5MjNrMDJpcHY4N3JtZDFuNCJ9.FDnd5ftof56RdHpFHNsjxQ';
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/light-v10',
+    style: 'mapbox://styles/mapbox/dark-v10',
     zoom: 11,
     center: [-122.335167, 47.608013]
 });
@@ -26,22 +26,18 @@ async function geojsonFetch() {
                     'step',
                     ['get', 'Total_Population'],
                     '#FFF5F0',
-                    1000,
-                    '#FEE0D2',
-                    2000,
+                    1500,
                     '#FCBBA1',
-                    3000    ,
+                    3000,
                     '#FC9272',
-                    4000,
+                    4500    ,
                     '#FB6A4A',
-                    5000,
-                    '#EF3B2C',
                     6000,
-                    '#CB181D',
-                    7000,
+                    '#EF3B2C',
+                    7500,
                     "#A50F15",
                     10000,
-                    '#67000D'
+                    '#CB181D'
                 ],
                 'fill-outline-color': '#BBBBBB',
                 'fill-opacity': 0.7,
@@ -49,26 +45,20 @@ async function geojsonFetch() {
         });
 
         const layers = [
-            '0-1,000',
-            '1,000-1,999',
-            '2,000-2,999',
-            '3,000-3,999',
-            '4,000-4,999',
-            '5,000-5,999',
-            '6,000-6,999',
-            '7,000-7,999',
-            '8,000+'
+            '0-1,500',
+            '1,500-2,999',
+            '3,000-4,499',
+            '4,500-5,999',
+            '6,000-7,499',
+            '7,500+'
         ];
         const colors = [
             '#FFF5F0',
-            '#FEE0D2',
             '#FCBBA1',
             '#FC9272',
             '#FB6A4A',
             '#EF3B2C',
-            '#CB181D',
-            '#A50F15',
-            '#67000D'
+            '#A50F15'
         ];
 
         const legend = document.getElementById('legend');

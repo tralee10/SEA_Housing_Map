@@ -22,8 +22,7 @@ This project aims to provide insight into how effectively housing development re
 ### Functions
 **Time-Based Sliders**
 > - The **Year Issued** slider alters which points are shown on the map based on the year in which the building permit was issued. 
-> - The **Year Finished** slider alters which points are shown on the map based on the year in which the building was completed. 
-
+> - The **Year Finished** slider alters which points are shown on the map based on the year in which the building was completed.
 
 **Dropdowns**
 > - The **Permit Type** dropdown filters the data being viewed at one time based on the type of permit they have, either construction or demolition.
@@ -31,6 +30,8 @@ This project aims to provide insight into how effectively housing development re
 > - The **Neighborhood** dropdown filters the data being viewed at one time based on the neighborhood that the permits are set in. In Seattle, this includes places like "Northeast", "Northwest", and "Ballard".
 > - The **Urban Village Name** dropdown filters the data being viewed at one time based on the urban village that the permits are set in. In Seattle, this includes places like "University District Northwest", "Roosevelt", and "Capitol Hill".
 
+**Dynamic Bar Chart**
+> - The dynamic bar chart updates based on the **Year**, **Permit Type**, **Dwelling Type**, **Neighborhood**, and/or **Urban Village** that is selected.
 
 ## Data
 ### Sources

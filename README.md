@@ -1,5 +1,5 @@
 # SEA_Housing_Map
-Seattle Housing Supply &amp; Population Map Dashboard
+Seattle Housing Permit Supply & Population Map Dashboard
 
 **_Created by_** Travis Lee, Kevin Chao, and Kaitlyn Billington
 
@@ -40,8 +40,8 @@ This project aims to provide insight into how effectively housing development re
 
 ### Applied Libraries and Web Services
 - **Mapbox GL JS**: used for interactive basemap
-- _D3 or char.js for charts -> TBD_
+- **Chart.js**: used for charts (bar chart) in dashboard
 - **github**: used to publish webpage
 
 ### AI Acknowledgement
-_ChatGPT was used to create the [```favicon.png```](img/map_favicon.png)_
+_ChatGPT was used to create the [```favicon.png```](img/map_favicon.png) and to help debug code._

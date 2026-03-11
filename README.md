@@ -1,5 +1,4 @@
-# SEA_Housing_Map
-Seattle Housing Permit Supply & Population Map Dashboard
+# Seattle Housing Permit Supply & Population Map Dashboard
 
 **_Created by_** Travis Lee, Kevin Chao, and Kaitlyn Billington
 

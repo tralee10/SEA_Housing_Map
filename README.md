@@ -68,8 +68,8 @@ This project is inspired by:
 - **Mapping Neighborhoods with the Highest Risk of Housing Instability and Homelessness** by Urban Institute [View Web Page](https://www.urban.org/data-tools/mapping-neighborhoods-highest-risk-housing-instability-and-homelessness)
 
 ### Imagery
-![image](img/seattle_view.jpg)
-Sourced from **Visit Seattle Washington** [View Image Source](https://visitseattle.org)
+Imagery provided by:
+**Visit Seattle Washington** [View Web Page](https://visitseattle.org)
 
 ### AI Acknowledgement
 _ChatGPT was used to create the [```favicon.png```](img/map_favicon.png) and to help debug code._

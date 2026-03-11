@@ -64,7 +64,7 @@ This project aims to provide insight into how effectively housing development re
 
 ### Inspirations & References
 This project is inspired by:
-- **US Hospital Facility Bed Capacity Map** by CovidCareMap[View Web Page](https://www.covidcaremap.org/maps/us-healthcare-system-capacity/#3.5/38/-96) 
+- **US Hospital Facility Bed Capacity Map** by CovidCareMap [View Web Page](https://www.covidcaremap.org/maps/us-healthcare-system-capacity/#3.5/38/-96) 
 - **Mapping Neighborhoods with the Highest Risk of Housing Instability and Homelessness** by Urban Institute [View Web Page](https://www.urban.org/data-tools/mapping-neighborhoods-highest-risk-housing-instability-and-homelessness)
 
 ### Imagery

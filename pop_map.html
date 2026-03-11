@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Seattle Population 2010</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web|Oswald" rel="stylesheet">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css" rel="stylesheet">
     <link rel="stylesheet" href="css/pop_map.css">
 
@@ -15,6 +15,15 @@
 
 <body>
     <div id="map"></div>
+    <div class='map-overlay' id='features'>
+        <h2>Seattle Population</h2>
+        <div id='text-description'>
+            <p>
+                This is a basic map showing Seattle's population distribution in 2010.
+                Each census tract is clickable, and will show the tract ID and total population.
+            </p>
+        </div>
+    </div>
     <div class='map-overlay' id='legend'></div>
     <script src="js/pop_map.js"></script>
 </body>

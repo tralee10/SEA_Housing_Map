@@ -90,7 +90,7 @@ async function geojsonFetch() {
         });
     });
 
-    map.on('click', 'permit-symbols', e => {
+    map.on('click', 'pop_data_layer', e => {
 
     const props = e.features[0].properties;
 

@@ -134,21 +134,40 @@ function updateChart(){
 
 const legend = document.getElementById('legend');
 
-legend.innerHTML = `
-<strong>Development Status</strong>
+function showDotLegend(){
 
-<p><i class="dot" style="background:#4DA3FF; width:12px; height:12px;"></i>Permit Issued</p>
-<p><i class="dot" style="background:#FF6B6B; width:12px; height:12px;"></i>Permit Finalized</p>
+    legend.innerHTML = `
+    <strong>Development Status</strong>
 
-<br>
+    <p><i class="dot" style="background:#4DA3FF; width:12px; height:12px;"></i>Permit Issued</p>
+    <p><i class="dot" style="background:#FF6B6B; width:12px; height:12px;"></i>Permit Finalized</p>
 
-<strong>Net Units Permitted</strong>
+    <br>
 
-<p><i class="dot" style="background:#999; width:8px; height:8px;"></i>Small Development</p>
-<p><i class="dot" style="background:#999; width:16px; height:16px;"></i>Medium Development</p>
-<p><i class="dot" style="background:#999; width:24px; height:24px;"></i>Large Development</p>
-`;
+    <strong>Net Units Permitted</strong>
 
+    <p><i class="dot" style="background:#999; width:8px; height:8px;"></i>Small Development</p>
+    <p><i class="dot" style="background:#999; width:16px; height:16px;"></i>Medium Development</p>
+    <p><i class="dot" style="background:#999; width:24px; height:24px;"></i>Large Development</p>
+    `;
+}
+
+function showHeatLegend(){
+
+    legend.innerHTML = `
+    <div class="legend-title">Housing Development Density</div>
+
+    <div class="legend-subtitle">Permit Issued (Blue)</div>
+    <div class="legend-gradient gradient-blue"></div>
+
+    <div class="legend-subtitle">Permit Finalized (Red)</div>
+    <div class="legend-gradient gradient-red"></div>
+
+    <div class="legend-scale">Low → High Density</div>
+    `;
+}
+
+showDotLegend();
 
 // ---------------- FILTER STATE ----------------
 
@@ -198,7 +217,12 @@ function applyFilters() {
     map.setFilter('permit-symbols', permitFilters.length > 1 ? permitFilters : null);
     map.setFilter('finaled-symbols', finaledFilters.length > 1 ? finaledFilters : null);
 
-    updateChart();
+    map.setFilter('permit-heat', permitFilters.length > 1 ? permitFilters : null);
+    map.setFilter('finaled-heat', finaledFilters.length > 1 ? finaledFilters : null);
+
+    map.setPaintProperty('permit-heat','heatmap-opacity',0.85);
+
+    updateChart;
 }
 
 
@@ -268,6 +292,87 @@ async function loadData() {
                 'circle-stroke-color':'white'
             }
         });
+
+        map.addLayer({
+            id: 'finaled-heat',
+            type: 'heatmap',
+            source: 'tracts',
+            maxzoom: 15,
+            paint: {
+                'heatmap-weight': [
+                    'interpolate',
+                    ['linear'],
+                    ['get','Net Units Permitted'],
+                    0,0,
+                    17,1
+                ],
+                'heatmap-intensity': 1,
+                'heatmap-radius': 25,
+                'heatmap-opacity': 0.8,
+                'heatmap-color': [
+                    'interpolate',
+                    ['linear'],
+                    ['heatmap-density'],
+                    0,'rgba(255,0,0,0)',
+                    0.2,'#FF6B6B',
+                    0.4,'#ff4d4d',
+                    0.6,'#ff1a1a',
+                    0.8,'#cc0000',
+                    1,'#800000'
+                ]
+            },
+            layout:{visibility:'none'}
+        });
+
+        map.addLayer({
+            id: 'permit-heat',
+            type: 'heatmap',
+            source: 'tracts',
+            maxzoom: 15,
+            paint: {
+                'heatmap-weight': [
+                    'interpolate',
+                    ['linear'],
+                    ['get','Net Units Permitted'],
+                    0,0,
+                    17,1
+                ],
+                'heatmap-intensity': 1,
+                'heatmap-radius': 25,
+                'heatmap-opacity': 0.8,
+                'heatmap-color': [
+                    'interpolate',
+                    ['linear'],
+                    ['heatmap-density'],
+                    0,'rgba(0,0,255,0)',
+                    0.2,'#4DA3FF',
+                    0.4,'#1f78ff',
+                    0.6,'#0066ff',
+                    0.8,'#0044cc',
+                    1,'#0033cc'
+                ]
+            },
+            layout:{visibility:'none'}
+        });
+
+        // --------- Pointer ----------------
+        
+        map.on('mouseenter', 'permit-symbols', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'permit-symbols', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
+        map.on('mouseenter', 'finaled-symbols', () => {
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'finaled-symbols', () => {
+            map.getCanvas().style.cursor = '';
+        });
+
 
 
         // ---------------- POPUPS ON CLICK----------------
@@ -363,6 +468,45 @@ reset.addEventListener('click', () => {
 
     applyFilters();
 });
+
+// -------------- HeatMap Button -------------------------
+
+let heatOn = false;
+
+const toggleBtn = document.getElementById("heat-toggle");
+
+toggleBtn.addEventListener("click", () => {
+
+    heatOn = !heatOn;
+
+    if(heatOn){
+
+        map.setLayoutProperty('permit-symbols','visibility','none');
+        map.setLayoutProperty('finaled-symbols','visibility','none');
+
+        map.setLayoutProperty('permit-heat','visibility','visible');
+        map.setLayoutProperty('finaled-heat','visibility','visible');
+
+        toggleBtn.textContent = " Switch to Proportional Symbols Map";
+
+        showHeatLegend();
+
+    } else {
+
+        map.setLayoutProperty('permit-symbols','visibility','visible');
+        map.setLayoutProperty('finaled-symbols','visibility','visible');
+
+        map.setLayoutProperty('permit-heat','visibility','none');
+        map.setLayoutProperty('finaled-heat','visibility','none');
+
+        toggleBtn.textContent = "Switch to Heatmap";
+
+        showDotLegend();
+
+    }
+
+});
+
 
 
 // ---------------- SLIDERS ----------------

@@ -75,7 +75,7 @@ This project is inspired by:
 
 ### Imagery
 Imagery provided by:
-**Visit Seattle Washington** [View Web Page](https://visitseattle.org)
+**Matador Network: The After-Dark Guide to Seattle** [View Web Page](https://matadornetwork.com/trips/dark-guide-seattle/)
 
 ### AI Acknowledgement
 _ChatGPT was used to create the [```favicon.png```](img/map_favicon.png) and to help debug code._

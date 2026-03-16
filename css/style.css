@@ -175,6 +175,74 @@ label {
 }
 
 
+/* Heatmap Legend */
+
+.legend-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.legend-subtitle {
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 4px;
+}
+
+.legend-gradient {
+    height: 10px;
+    width: 120px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.gradient-blue {
+    background: linear-gradient(to right, transparent, #4DA3FF, #1f78ff, #0033cc);
+}
+
+.gradient-red {
+    background: linear-gradient(to right, transparent, #FF6B6B, #ff3b3b, #b30000);
+}
+
+.legend-scale {
+    font-size: 13px;
+    margin-top: 6px;
+    color: #444;
+}
+
+/* Heatmap Toggle Button */
+
+#heat-toggle {
+
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 6px;
+
+    background: #e2980e;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    padding: 8px;
+
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+#heat-toggle:hover {
+    background: #c7860d;
+}
+
+#time-control{
+    margin-top: 14px;
+}
+
 /* Footer */
 
 #footer {

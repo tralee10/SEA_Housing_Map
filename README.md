@@ -19,6 +19,9 @@ This project aims to provide insight into how effectively housing development re
 - **Students & General Public**: exploring the map for personal or educational purposes, getting a better idea of what is going on within different communities.
 
 ## Features & Functionality
+**Heatmap**
+> -
+
 **Time-Based Sliders**
 > - The **Year Issued** slider alters which points are shown on the map based on the year in which the building permit was issued. 
 > - The **Year Finished** slider alters which points are shown on the map based on the year in which the building was completed.
@@ -43,7 +46,7 @@ This project aims to provide insight into how effectively housing development re
 ## Heatmap
 ![image](img/house_heatmap.png)
 
-### Functions Bar (Time Slider, Dropdown Menus, Dynamic Bar Chart)
+### Functions Bar (Switch Between Heatmap/Proportional Symbols Map Button, Time Slider, Dropdown Menus, Dynamic Bar Chart, Reset Map Button)
 ![image](img/house_func.png)
 
 ### Dynamic Chart

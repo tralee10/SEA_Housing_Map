@@ -225,8 +225,98 @@ function applyFilters() {
     updateChart;
 }
 
+// ---------------- LOAD POPULATION DATA ----------------
 
-// ---------------- LOAD DATA ----------------
+async function loadPop() {
+    let response = await fetch('assets/2010_pop_tract.geojson');
+    let pop_data = await response.json();
+
+    map.on('load', function loadingData() {
+        map.addSource('pop_data', {
+            type: 'geojson',
+            data: pop_data
+        });
+
+        map.addLayer({
+            'id': 'pop_data_layer',
+            'type': 'fill',
+            'source': 'pop_data',
+            'paint': {
+                'fill-color': [
+                    'step',
+                    ['get', 'Total_Population'],
+                    '#f0fff1',
+                    1500,
+                    '#94c58c',
+                    3000,
+                    '#64ad62',
+                    4500    ,
+                    '#429b46',
+                    6000,
+                    '#1a8828',
+                    7500,
+                    "#0a6921",
+                    10000,
+                    '#094f29'
+                ],
+                'fill-outline-color': '#ffffff',
+                'fill-opacity': 0.7,
+            }
+        });
+
+        const layers = [
+            '0-1,500',
+            '1,500-2,999',
+            '3,000-4,499',
+            '4,500-5,999',
+            '6,000-7,499',
+            '7,500+'
+        ];
+        const colors = [
+            '#f0fff1',
+            '#94c58c',
+            '#64ad62',
+            '#429b46',
+            '#1a8828',
+            '#0a6921'
+        ];
+
+        const legend = document.getElementById('pop-legend');
+        legend.innerHTML = "<b>Seattle 2010 Population by Census Tract</b><br>";
+
+
+        layers.forEach((layer, i) => {
+            const color = colors[i];
+            const item = document.createElement('div');
+            const key = document.createElement('span');
+            key.className = 'legend-key';
+            key.style.backgroundColor = color;
+
+            const value = document.createElement('span');
+            value.innerHTML = `${layer}`;
+            item.appendChild(key);
+            item.appendChild(value);
+            legend.appendChild(item);
+        });
+    });
+
+    map.on('click', 'pop_data_layer', e => {
+
+    const props = e.features[0].properties;
+
+        new mapboxgl.Popup()
+            .setLngLat(e.lngLat)
+            .setHTML(`
+                <strong>Tract:</strong> ${props["TRACT"]}<br>
+                <strong>Population:</strong> ${props["Total_Population"]}<br>
+            `)
+        .addTo(map);
+    });
+}
+
+loadPop();
+
+// ---------------- LOAD PERMIT DATA ----------------
 
 async function loadData() {
 

@@ -40,8 +40,14 @@ This project aims to provide insight into how effectively housing development re
 ### Proportional Symbols Map
 ![image](img/house_map.png)
 
+## Heatmap
+![image](img/house_heatmap.png)
+
 ### Functions Bar (Time Slider, Dropdown Menus, Dynamic Bar Chart)
 ![image](img/house_func.png)
+
+### Dynamic Chart
+![image](img/house_chart.png)
 
 ### Pop-Up Details
 ![image](img/house_popup.png)

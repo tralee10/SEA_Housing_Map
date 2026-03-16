@@ -1,72 +1,356 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seattle Housing Supply & Population Map</title>
-    <link rel="stylesheet" href="css/webstyle.css">
-    <link rel="icon" type="image/png" href="img/map_favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<title>Seattle Housing Supply & Population Map</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="icon" type="image/png" href="img/map_favicon.png">
+<style>
+
+body,h1,h2,h3,h4,h5,h6{
+font-family:"Raleway",sans-serif
+}
+
+body,html{
+height:100%;
+line-height:1.8;
+scroll-behavior:smooth;
+}
+
+/* header image */
+
+.bgimg{
+background-position:center;
+background-size:cover;
+background-image:url("img/seattle_view.jpg");
+min-height:100%;
+}
+
+</style>
+
 </head>
+
+
 <body>
-    <div class="topnav" id="myTopnav">
-        <a href="house_map.html" class="active">Home</a>
-        <a href="about.html">About</a>
-        <a href="references.html">References</a>
-        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
 
-    <header>
-        <img src="img/seattle_view.jpg" alt="Pic of Seattle" class="front-page-image">
-        <h1>Seattle Housing Supply & Population Map</h1>
-        <p>Explore Seattle's traffic collision patterns through an interactive map here:</p>
-        <a href="house_map.html" class="map-button">View Permit Map</a>
-        <a href="pop_map.html" class="map-button">View Population Map</a>
-    </header>
+<!-- NAVBAR -->
 
-    <div class="content">
-        <h2>Two Different Visualizations:</h2>
-        <ul>
-            <li><strong>Proportional Symbols Map:</strong> Each dot represents a house permit, with size determined by the size of the development, color-coded by permit status (issued or completed).</li>
-            <li><strong>Heatmap:</strong> Quickly spot high-populated areas around Seattle.</li>
-        </ul>
-    </div>
+<div class="w3-top">
+<div class="w3-bar w3-white w3-card">
 
-    <div class="content">
-        <h2>Features & Functionality</h2>
-        <ul>
-            <li><strong>Interactive Web Map:</strong> Built using Mapbox for smooth visualization. Displays collision locations with pop-up details.</li>
-            <li><strong>User-Controlled Filters:</strong> Filter house permit and population data by year issued and finished, type of permit, dwelling type, neighborhood, and urban village name.</li>
-            <li><strong>Heatmaps & Clustering:</strong> Highlights high-populated areas to identify living spaces.</li>
-        </ul>
-        
-        <button class="accordion"><strong>Data Charts: </strong>Provides real-time statistics, such as:</button>
-        <div class="panel">
-            <ul>
-                <li>🔹 Yearly housing permits.</li>
-                <li>🔹 Trends over time.</li>
-            </ul>
-        </div>
-    </div>
+<a href="#home" class="w3-bar-item w3-button w3-wide">
+Seattle Housing Map
+</a>
 
-    <footer>
-        <p>© 2026 Seattle Housing Supply & Population Map | Seattle, WA</p>
-    </footer>
+<div class="w3-right w3-hide-small">
 
-    <script>
-        function toggleMenu() {
-            var x = document.getElementById("myTopnav");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
-        }
-    </script>
+<a href="#maps" class="w3-bar-item w3-button">Maps</a>
+<a href="#about" class="w3-bar-item w3-button">About</a>
 
-    <script src="js/actions.js"></script>
+<a href="#team" class="w3-bar-item w3-button">
+<i class="fa fa-users"></i> Team
+</a>
+
+<a href="#references" class="w3-bar-item w3-button">
+<i class="fa fa-book"></i> References
+</a>
+
+</div>
+
+</div>
+</div>
+
+
+
+<!-- HEADER -->
+
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+
+<div class="w3-display-left w3-text-white" style="padding:48px">
+
+<span class="w3-jumbo w3-hide-small">
+Seattle Housing Supply & Population Map
+</span>
+
+<br>
+
+<span class="w3-large">
+Explore Seattle housing development and population patterns through interactive maps.
+</span>
+
+<p>
+
+<a href="house_map.html"
+class="w3-button w3-white w3-padding-large w3-large w3-margin-top">
+
+View Permit Map
+
+</a>
+
+<a href="pop_map.html"
+class="w3-button w3-light-grey w3-padding-large w3-large w3-margin-top">
+
+View Population Map
+
+</a>
+
+</p>
+
+</div>
+
+<div class="w3-display-bottommiddle w3-text-white w3-center" style="padding-bottom:24px">
+<p class="w3-large">Scroll Down to Learn More</p>
+<i class="fa fa-angle-down w3-xlarge"></i>
+</div>
+
+</header>
+
+
+
+<!-- MAPS SECTION -->
+
+<div class="w3-container w3-center" style="padding:128px 16px" id="maps">
+
+<h2>Two Different Visualizations</h2>
+
+<p class="w3-large">
+This project provides two interactive maps that explore housing permits and population distribution across Seattle.
+</p>
+
+<div class="w3-row-padding" style="margin-top:64px">
+
+<div class="w3-half">
+
+<i class="fa fa-map-marker w3-margin-bottom w3-jumbo"></i>
+
+<h3>Proportional Symbols Map</h3>
+
+<p>
+Each dot represents a housing permit, with symbol size determined by the scale of development.
+Colors distinguish whether the permit has been issued or completed.
+</p>
+
+</div>
+
+<div class="w3-half">
+
+<i class="fa fa-fire w3-margin-bottom w3-jumbo"></i>
+
+<h3>Population Heatmap</h3>
+
+<p>
+The heatmap highlights highly populated areas throughout Seattle, allowing users to quickly identify
+population density patterns across the city.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ABOUT SECTION -->
+
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="about">
+
+<h2 class="w3-center">About the Project</h2>
+
+<div style="max-width:900px;margin:auto">
+
+<h3>Project Overview</h3>
+
+<p>
+This project aims to provide insight into how effectively housing development responds to demographic changes.
+By visualizing these relationships spatially, users can better understand where housing supply may be keeping
+up with demand and where gaps may exist.
+</p>
+
+<p>
+The broader impact includes improving transparency in housing development patterns and potentially informing
+city planners, policymakers, researchers, and residents.
+</p>
+
+
+<h3>Data Processing</h3>
+
+<p>
+We cleaned and formatted the datasets by removing irrelevant columns, handling missing data,
+standardizing attributes, and filtering by year. Cleaned datasets are stored in the
+<code>assets/</code> folder.
+</p>
+
+
+<h3>Key Objectives</h3>
+
+<ul>
+
+<li><strong>Increase public awareness</strong> of housing development patterns and trends in Seattle.</li>
+<li><strong>Help city planners and policymakers</strong> make data-driven decisions about housing supply and urban growth.</li>
+<li><strong>Enable residents, researchers, and community members</strong> to explore how housing permits and population growth vary across neighborhoods over time.</li>
+
+</ul>
+
+<p>
+The interactive map includes time sliders and dropdown filters to allow users to explore the data
+in ways best suited to them and better assess the relationship between housing supply and population growth.
+</p>
+
+<h3>Target Audience</h3>
+
+<ul>
+
+<li><strong>Seattle City Planners</strong> – can utilize the map for informed decision-making when planning developments.</li>
+<li><strong>Housing Policy Researchers</strong> – can assess housing trends relative to population change.</li>
+<li><strong>Students & General Public</strong> – can explore housing development patterns across neighborhoods.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+
+<!-- TEAM SECTION -->
+
+<div class="w3-container" style="padding:128px 16px" id="team">
+    
+<h2 class="w3-center">Project Team</h2>
+
+<div style="max-width:900px;margin:auto">
+
+<p class="w3-large w3-center">
+This project was developed by students at the University of Washington.
+</p>
+
+<ul>
+
+<li><strong>Travis Lee</strong> – 
+<a href="https://github.com/tralee10" target="_blank">tralee10</a>
+</li>
+
+<li><strong>Kevin Chao</strong> – 
+<a href="https://github.com/kchao589" target="_blank">kchao589</a>
+</li>
+
+<li><strong>Kaitlyn Billington</strong> – 
+<a href="https://github.com/kaitlynbillington" target="_blank">kaitlynbillington</a>
+</li>
+
+</ul>
+
+<p>
+<i>
+This project was developed as part of the University of Washington's GEOG 458 course.
+We thank Professor Dr. Bo Zhao and TA Liz Peng for their guidance throughout the quarter.
+</i>
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- REFERENCES -->
+
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="references">
+
+<h2 class="w3-center">Data Sources & References</h2>
+
+<div style="max-width:900px;margin:auto">
+
+<h3>Inspirations</h3>
+
+<ul>
+
+<li>
+<strong>US Hospital Facility Bed Capacity Map</strong> – CovidCareMap
+<br>
+<a href="https://www.covidcaremap.org/maps/us-healthcare-system-capacity/#3.5/38/-96" target="_blank">
+View Web Page
+</a>
+</li>
+
+<li>
+<strong>Mapping Neighborhoods with the Highest Risk of Housing Instability</strong> – Urban Institute
+<br>
+<a href="https://www.urban.org/data-tools/mapping-neighborhoods-highest-risk-housing-instability-and-homelessness" target="_blank">
+View Web Page
+</a>
+</li>
+
+</ul>
+
+
+<h3>Datasets</h3>
+
+<ul>
+
+<li>
+<strong>Seattle GeoData Portal</strong> – Residential Permits since 2010
+<br>
+<a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::built-units-since-2010/about" target="_blank">
+View Dataset
+</a>
+</li>
+
+<li>
+<strong>Seattle GeoData Portal</strong> – Annual Population and Housing Estimates
+<br>
+<a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::annual-population-and-housing-estimates-for-2020-census-blocks-in-seattle/about" target="_blank">
+View Dataset
+</a>
+</li>
+
+</ul>
+
+
+<h3>Images</h3>
+
+<ul>
+
+<li>
+<strong>Visit Seattle Washington</strong>
+<br>
+<a href="https://visitseattle.org/" target="_blank">
+View Image Source
+</a>
+</li>
+
+</ul>
+
+
+<h3>AI Use Disclosure</h3>
+
+<p>
+ChatGPT was used to create the favicon.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<footer class="w3-center w3-black w3-padding-64">
+
+<a href="#home" class="w3-button w3-light-grey">
+<i class="fa fa-arrow-up w3-margin-right"></i>Back to top
+</a>
+
+<p>© 2026 Seattle Housing Supply & Population Map | Seattle, WA</p>
+
+</footer>
+
 
 </body>
 </html>

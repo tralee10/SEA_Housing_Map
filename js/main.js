@@ -228,8 +228,8 @@ let filters = {
     permit: "All",
     neighborhood: "All",
     village: "All",
-    yearIssued: null,
-    yearFinaled: null
+    yearIssued: 2010,
+    yearFinaled: 2010
 };
 
 
@@ -406,6 +406,8 @@ async function loadData() {
             },
             layout:{visibility:'none'}
         });
+
+        applyFilters();
 
         // --------- Pointer ----------------
         
@@ -668,29 +670,28 @@ popBtn.addEventListener("click", () => {
 
 
 // ---------------- SLIDERS ----------------
-
 const issuedSlider = document.getElementById('year-slider');
 const issuedLabel = document.getElementById('year-label');
 
-issuedSlider.addEventListener('input',(e)=>{
+issuedSlider.value = filters.yearIssued;
+issuedLabel.textContent = filters.yearIssued;
 
+issuedSlider.addEventListener('input',(e)=>{
     filters.yearIssued = parseInt(e.target.value);
     issuedLabel.textContent = filters.yearIssued;
-
     applyFilters();
-
 });
 
 const finaledSlider = document.getElementById('finaled-slider');
 const finaledLabel = document.getElementById('finaled-label');
 
-finaledSlider.addEventListener('input',(e)=>{
+finaledSlider.value = filters.yearFinaled;
+finaledLabel.textContent = filters.yearFinaled;
 
+finaledSlider.addEventListener('input',(e)=>{
     filters.yearFinaled = parseInt(e.target.value);
     finaledLabel.textContent = filters.yearFinaled;
-
     applyFilters();
-
 });
 
 

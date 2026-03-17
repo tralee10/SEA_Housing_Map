@@ -3,8 +3,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidHJhbGVlMTAiLCJhIjoiY202cmp6MTd5MjNrMDJpcHY4N
 let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
-    zoom: 11,
-    center: [-122.335167, 47.608013]
+    zoom: 10.75,
+    center: [-122.400000, 47.608013]
 });
 
 map.addControl(new mapboxgl.NavigationControl({showCompass: false}), 'top-right');
@@ -132,7 +132,8 @@ function updateChart(){
 
 // ---------------- LEGEND ----------------
 
-const legend = document.getElementById('legend');
+const legend = document.getElementById('legend');       // right
+const popLegend = document.getElementById('pop-legend'); // left
 
 function showDotLegend(){
 
@@ -170,20 +171,27 @@ function showHeatLegend(){
 showDotLegend();
 
 
-// ----------- Cloropleth/Population Legend -----------
+// ----------- Choropleth / Population Legend -----------
 
 function showPopLegend() {
-    const popLegend = document.getElementById('pop-legend'); 
+
+    const popLegend = document.getElementById('pop-legend');
+
+    // show legend
+    popLegend.style.display = "block";
+
+    // clear old content
     popLegend.innerHTML = "<b>Seattle 2010 Population by Census Tract</b><br>";
 
     const layers = [
-        '0-1,500',
-        '1,500-2,999',
-        '3,000-4,499',
-        '4,500-5,999',
-        '6,000-7,499',
+        '0 – 1,499',
+        '1,500 – 2,999',
+        '3,000 – 4,499',
+        '4,500 – 5,999',
+        '6,000 – 7,499',
         '7,500+'
     ];
+
     const colors = [
         '#f0fff1',
         '#94c58c',
@@ -194,17 +202,21 @@ function showPopLegend() {
     ];
 
     layers.forEach((layer, i) => {
-        const color = colors[i];
+
         const item = document.createElement('div');
+
         const key = document.createElement('span');
         key.className = 'legend-key';
-        key.style.backgroundColor = color;
+        key.style.backgroundColor = colors[i];
 
         const value = document.createElement('span');
-        value.innerHTML = `${layer}`;
+        value.innerHTML = layer;
+
         item.appendChild(key);
         item.appendChild(value);
+
         popLegend.appendChild(item);
+
     });
 }
 
@@ -520,7 +532,14 @@ async function loadPop() {
                 .setLngLat(e.lngLat)
                 .setHTML(`
                     <strong>Tract:</strong> ${props["TRACT"]}<br>
-                    <strong>Population:</strong> ${props["Total_Population"]}
+                    <strong>Population:</strong> ${props["Total_Population"]}<br>
+                    <strong>Male Median Age:</strong> ${props["Median_Age_Male"]}<br>
+                    <strong>Female Median Age:</strong> ${props["Median_Age_Female"]}<br>
+                    <strong>Hispanic/Latino:</strong> ${props["Population_Hispanic_or_Latino"]}<br>
+                    <strong>Other/Mixed:</strong> ${props["Some_Other_Race_alone_or_combin"]}<br>
+                    <strong>Black/African American:</strong> ${props["Black_or_African_American_alone"]}<br>
+                    <strong>Asian/Mixed:</strong> ${props["Asian_alone_or_in_combination"]}<br>
+                    <strong>Other/Mixed:</strong> ${props["Some_Other_Race_alone_or_combin"]}
                 `)
                 .addTo(map);
         });
@@ -539,8 +558,8 @@ const reset = document.getElementById('reset');
 reset.addEventListener('click', () => {
 
     map.flyTo({
-        zoom: 11,
-        center: [-122.335167, 47.608013]
+        zoom: 10.75,
+        center: [-122.400000, 47.608013]
     });
 
     filters = {
@@ -622,7 +641,6 @@ popBtn.addEventListener("click", () => {
 
     if(popOn){
 
-        // show choropleth
         map.setLayoutProperty('pop_data_layer','visibility','visible');
 
         popBtn.textContent = "Hide Population Map";
@@ -631,13 +649,18 @@ popBtn.addEventListener("click", () => {
 
     } else {
 
-        // hide choropleth
         map.setLayoutProperty('pop_data_layer','visibility','none');
 
         popBtn.textContent = "Show Population Map";
 
-        showDotLegend();
+        popLegend.style.display = "none";
 
+        // ✅ restore correct legend based on current mode
+        if (heatOn) {
+            showHeatLegend();
+        } else {
+            showDotLegend();
+        }
     }
 
 });

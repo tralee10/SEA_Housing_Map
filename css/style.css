@@ -52,19 +52,6 @@ body {
     margin-top: 15px;
 }
 
-#title a {
-    color: white;
-    background-color: #4dabf7;
-    text-decoration: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 13px;
-}
-
-#title a:hover {
-    background-color: #339af0;
-}
-
 
 /* Description */
 
@@ -182,6 +169,33 @@ label {
     font-style: italic;
 }
 
+/* Cloropleth/Population Legend */
+
+.legend-key{
+    display:inline-block;
+    width:14px;
+    height:14px;
+    margin-right:6px;
+    border-radius:2px;
+}
+
+#pop-legend{
+    position: absolute;
+    bottom: 40px;
+    left: 420px; /* just to the right of the sidebar */
+    width: 180px;
+
+    background: white;
+    padding: 12px;
+
+    border-radius: 6px;
+    font-size: 14px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+    display: none; /* hidden by default */
+}
+
 
 /* Heatmap Legend */
 
@@ -252,7 +266,7 @@ label {
 }
 
 
-/* Heatmap Toggle Button */
+/* Population Toggle Button */
 
 #pop-toggle {
 
@@ -283,6 +297,35 @@ label {
 
 #time-control{
     margin-top: 14px;
+}
+
+
+/* Reset Values Button */
+#reset {
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 6px;
+
+    background: #4dabf7;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    padding: 8px;
+
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+#reset:hover {
+    background: #339af0; /* similar hover effect like the title link */
 }
 
 

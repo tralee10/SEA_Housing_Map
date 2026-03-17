@@ -20,18 +20,18 @@
     <div id="info">
         <div id="title">
             Seattle Housing Permit & Supply Dashboard
-            <span id="reset"><a href="#">Reset Values</a></span>
         </div>
 
         <p class="description">
-            This dashboard visualizes housing permits & housing supply and population in Seattle from 2005-2025 using proportional symbols.
-            Different sizes represent the number of permits in an area.
-            Click on a point to view detailed information about a permit.
+            This dashboard visualizes housing permits and new housing supply in Seattle from 2005-2025 using proportional symbols. 
+            You can also explore population patterns using the 2010 census map. 
+            Dot sizes indicate the number of permits or units in an area, while census tracts show population density by color. 
+            Click on any dot or tract to view detailed information about permits or population.
         </p>
 
         <p class="description">
-            Explore permits in Seattle by year, permit type, dwelling type, neighborhood, and urban area. The chart will update upon selecting different attributes, showing the 
-            most common locations for new housing units.
+            Filter permits by year, permit type, dwelling type, neighborhood, or urban village. 
+            The dynamic chart updates automatically to show the top locations for new housing units based on your selections.
         </p>
 
         <!-- Cloropleth Button -->
@@ -166,6 +166,9 @@
 
         </div>
 
+        <!-- Reset Button -->
+        <button id="reset">Reset Values</button>
+
 
         <!-- CHART -->
         <div id="chart-section">
@@ -181,7 +184,8 @@
     </div>
 
     <div id="map"></div>
-    <div id="legend"></div>
+    <div id="legend" class="legend"></div>
+    <div id="pop-legend" class="legend"></div>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
     <script src="js/main.js"></script>

@@ -19,8 +19,15 @@ This project aims to provide insight into how effectively housing development re
 - **Students & General Public**: exploring the map for personal or educational purposes, getting a better idea of what is going on within different communities.
 
 ## Features & Functionality
+
+**Cloropleth Map**
+> - The choropleth map displays Seattle’s population distribution by census tract.
+> - Each tract is shaded according to its total population, with darker colors indicating higher population counts.
+> - Quickly identify densely populated neighborhoods, compare population levels across the city, and explore how population patterns relate to housing development and urban growth.
+
 **Heatmap**
-> -
+> - The heatmap visualizes population density across Seattle’s census tracts, with darker areas representing higher concentrations of residents.
+> - Allows users to see where communities are most densely populated, highlighting patterns of urban settlement and areas of lower population across the city.
 
 **Time-Based Sliders**
 > - The **Year Issued** slider alters which points are shown on the map based on the year in which the building permit was issued. 
@@ -46,6 +53,9 @@ This project aims to provide insight into how effectively housing development re
 ## Heatmap
 ![image](img/house_heatmap.png)
 
+## Cloropleth Map
+![image](img/pop_cloro.png)
+
 ### Functions Bar (Switch Between Heatmap/Proportional Symbols Map Button, Time Slider, Dropdown Menus, Dynamic Bar Chart, Reset Map Button)
 ![image](img/house_func.png)
 
@@ -54,13 +64,14 @@ This project aims to provide insight into how effectively housing development re
 
 ### Pop-Up Details
 ![image](img/house_popup.png)
+![image](img/pop_popup.png)
 
 
 ## Data
 ### Sources
 [**Built Units Since 2010**](https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::built-units-since-2010/about): Records from the City of Seattle. Includes building permits assigned for creating or demolishing housing units from 2010-2020. This dataset came from the the _Seattle GeoData Portal_ and was cleaned to create our [```built_units.csv```](assets/built_units.csv) and [```built_units.geojson```](assets/built_units.geojson) files located in the assets folder.
 
-[**2010 Census Tract Seattle - Population Statistics**](https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::2010-census-tract-seattle-population-statistics/about): Census tract population statistics in 2010 of Seattle. This dataset came from the the _Seattle GeoData Portal_ and was cleaned to create our [```2010_pop_tract.csv```](assets/2010_pop_tract.csv) files located in the assets folder.
+[**2010 Census Tract Seattle - Population Statistics**](https://data-seattlecitygis.opendata.arcgis.com/datasets/SeattleCityGIS::2010-census-tract-seattle-population-statistics/about): Census tract population statistics in 2010 of Seattle. This dataset came from the the _Seattle GeoData Portal_ and was cleaned to create our [```2010_pop_tract.csv```](assets/2010_pop_tract.csv) and [```2010_pop_tract.geojson```](assets/2010_pop_tract.geojson) files located in the assets folder.
 
 ## Applied Libraries and Web Services
 - **JavaScript, HTML, CSS**: Provides the structure and styling for the web application.
@@ -76,9 +87,6 @@ This project is inspired by:
 - **US Hospital Facility Bed Capacity Map** by CovidCareMap [View Web Page](https://www.covidcaremap.org/maps/us-healthcare-system-capacity/#3.5/38/-96) 
 - **Mapping Neighborhoods with the Highest Risk of Housing Instability and Homelessness** by Urban Institute [View Web Page](https://www.urban.org/data-tools/mapping-neighborhoods-highest-risk-housing-instability-and-homelessness)
 
-### Imagery
-Imagery provided by:
-**Matador Network: The After-Dark Guide to Seattle** [View Web Page](https://matadornetwork.com/trips/dark-guide-seattle/)
 
 ### AI Acknowledgement
 _ChatGPT was used to create the [```favicon.png```](img/map_favicon.png) and to help debug code._

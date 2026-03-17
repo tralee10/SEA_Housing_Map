@@ -19,15 +19,23 @@ This project aims to provide insight into how effectively housing development re
 - **Students & General Public**: exploring the map for personal or educational purposes, getting a better idea of what is going on within different communities.
 
 ## Features & Functionality
-
-**Cloropleth Map**
-> - The choropleth map displays Seattle’s population distribution by census tract.
-> - Each tract is shaded according to its total population, with darker colors indicating higher population counts.
-> - Quickly identify densely populated neighborhoods, compare population levels across the city, and explore how population patterns relate to housing development and urban growth.
+**Proportional Symbols Map**
+> - The proportional symbols map visualizes housing permits across Seattle.
+> - Each dot represents a permit, with the size of the symbol corresponding to the number of new housing units allowed.
+> - Colors distinguish between permits that have been issued and those that have been finalized, allowing users to explore spatial patterns in housing development, identify areas of concentrated growth, and compare the scale of construction across neighborhoods.
 
 **Heatmap**
 > - The heatmap visualizes population density across Seattle’s census tracts, with darker areas representing higher concentrations of residents.
 > - Allows users to see where communities are most densely populated, highlighting patterns of urban settlement and areas of lower population across the city.
+
+**Cloropleth Map**
+> - The choropleth map displays Seattle’s population distribution by census tract from 2010.
+> - Each tract is shaded according to its total population, with darker colors indicating higher population counts.
+> - Quickly identify densely populated neighborhoods, compare population levels across the city, and explore how population patterns relate to housing development and urban growth.
+
+**Pop-Up Details**
+> - Permit Proportional Symbols Map: When dot is clicked.
+> - Population Cloropleth Map: When census tract is clicked.
 
 **Time-Based Sliders**
 > - The **Year Issued** slider alters which points are shown on the map based on the year in which the building permit was issued. 

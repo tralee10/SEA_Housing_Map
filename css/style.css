@@ -142,18 +142,6 @@ label {
 
 /* Legend */
 
-#pop-legend {
-    padding: 10px;
-    background: #495057;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    line-height: 18px;
-    height: 175px;
-    width: 150px;
-    margin-top: 20px;
-    font-family: 'Titillium Web', sans-serif;
-    font-size: 14px;
-}
-
 .legend-key {
     display: inline-block;
     border-radius: 20%;
@@ -262,6 +250,41 @@ label {
 #time-control{
     margin-top: 14px;
 }
+
+
+/* Heatmap Toggle Button */
+
+#pop-toggle {
+
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 6px;
+
+    background: #64dd13;
+    color: white;
+
+    border: none;
+    border-radius: 5px;
+
+    padding: 8px;
+
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+#pop-toggle:hover {
+    background: #56be10;
+}
+
+#time-control{
+    margin-top: 14px;
+}
+
 
 /* Footer */
 

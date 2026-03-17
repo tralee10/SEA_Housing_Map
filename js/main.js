@@ -169,6 +169,46 @@ function showHeatLegend(){
 
 showDotLegend();
 
+
+// ----------- Cloropleth/Population Legend -----------
+
+function showPopLegend() {
+    const popLegend = document.getElementById('pop-legend'); 
+    popLegend.innerHTML = "<b>Seattle 2010 Population by Census Tract</b><br>";
+
+    const layers = [
+        '0-1,500',
+        '1,500-2,999',
+        '3,000-4,499',
+        '4,500-5,999',
+        '6,000-7,499',
+        '7,500+'
+    ];
+    const colors = [
+        '#f0fff1',
+        '#94c58c',
+        '#64ad62',
+        '#429b46',
+        '#1a8828',
+        '#0a6921'
+    ];
+
+    layers.forEach((layer, i) => {
+        const color = colors[i];
+        const item = document.createElement('div');
+        const key = document.createElement('span');
+        key.className = 'legend-key';
+        key.style.backgroundColor = color;
+
+        const value = document.createElement('span');
+        value.innerHTML = `${layer}`;
+        item.appendChild(key);
+        item.appendChild(value);
+        popLegend.appendChild(item);
+    });
+}
+
+
 // ---------------- FILTER STATE ----------------
 
 let filters = {
@@ -222,99 +262,9 @@ function applyFilters() {
 
     map.setPaintProperty('permit-heat','heatmap-opacity',0.85);
 
-    updateChart;
+    updateChart();
 }
 
-// ---------------- LOAD POPULATION DATA ----------------
-
-async function loadPop() {
-    let response = await fetch('assets/2010_pop_tract.geojson');
-    let pop_data = await response.json();
-
-    map.on('load', function loadingData() {
-        map.addSource('pop_data', {
-            type: 'geojson',
-            data: pop_data
-        });
-
-        map.addLayer({
-            'id': 'pop_data_layer',
-            'type': 'fill',
-            'source': 'pop_data',
-            'paint': {
-                'fill-color': [
-                    'step',
-                    ['get', 'Total_Population'],
-                    '#f0fff1',
-                    1500,
-                    '#94c58c',
-                    3000,
-                    '#64ad62',
-                    4500    ,
-                    '#429b46',
-                    6000,
-                    '#1a8828',
-                    7500,
-                    "#0a6921",
-                    10000,
-                    '#094f29'
-                ],
-                'fill-outline-color': '#ffffff',
-                'fill-opacity': 0.7,
-            }
-        });
-
-        const layers = [
-            '0-1,500',
-            '1,500-2,999',
-            '3,000-4,499',
-            '4,500-5,999',
-            '6,000-7,499',
-            '7,500+'
-        ];
-        const colors = [
-            '#f0fff1',
-            '#94c58c',
-            '#64ad62',
-            '#429b46',
-            '#1a8828',
-            '#0a6921'
-        ];
-
-        const legend = document.getElementById('pop-legend');
-        legend.innerHTML = "<b>Seattle 2010 Population by Census Tract</b><br>";
-
-
-        layers.forEach((layer, i) => {
-            const color = colors[i];
-            const item = document.createElement('div');
-            const key = document.createElement('span');
-            key.className = 'legend-key';
-            key.style.backgroundColor = color;
-
-            const value = document.createElement('span');
-            value.innerHTML = `${layer}`;
-            item.appendChild(key);
-            item.appendChild(value);
-            legend.appendChild(item);
-        });
-    });
-
-    map.on('click', 'pop_data_layer', e => {
-
-    const props = e.features[0].properties;
-
-        new mapboxgl.Popup()
-            .setLngLat(e.lngLat)
-            .setHTML(`
-                <strong>Tract:</strong> ${props["TRACT"]}<br>
-                <strong>Population:</strong> ${props["Total_Population"]}<br>
-            `)
-        .addTo(map);
-    });
-}
-
-loadPop();
 
 // ---------------- LOAD PERMIT DATA ----------------
 
@@ -520,6 +470,67 @@ async function loadData() {
 loadData();
 
 
+// ---------------- LOAD POPULATION DATA ----------------
+async function loadPop() {
+    const response = await fetch('assets/2010_pop_tract.geojson');
+    const pop_data = await response.json();
+
+    map.on('load', () => {
+
+        // Add the population source
+        map.addSource('pop_data', {
+            type: 'geojson',
+            data: pop_data
+        });
+
+        // Add the choropleth layer
+        map.addLayer({
+            id: 'pop_data_layer',
+            type: 'fill',
+            source: 'pop_data',
+            layout:{ visibility:'none' },
+            paint: {
+                'fill-color': [
+                    'step',
+                    ['get', 'Total_Population'],
+                    '#f0fff1',
+                    1500,
+                    '#94c58c',
+                    3000,
+                    '#64ad62',
+                    4500,
+                    '#429b46',
+                    6000,
+                    '#1a8828',
+                    7500,
+                    "#0a6921",
+                    10000,
+                    '#094f29'
+                ],
+                'fill-outline-color': '#ffffff',
+                'fill-opacity': 0.7
+            }
+        });
+
+        // Add popups for the population layer
+        map.on('click', 'pop_data_layer', e => {
+            const props = e.features[0].properties;
+
+            new mapboxgl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(`
+                    <strong>Tract:</strong> ${props["TRACT"]}<br>
+                    <strong>Population:</strong> ${props["Total_Population"]}
+                `)
+                .addTo(map);
+        });
+
+    });
+}
+
+loadPop();
+
+
 
 // ---------------- RESET MAP BUTTON ----------------
 
@@ -559,6 +570,7 @@ reset.addEventListener('click', () => {
     applyFilters();
 });
 
+
 // -------------- HeatMap Button -------------------------
 
 let heatOn = false;
@@ -590,6 +602,39 @@ toggleBtn.addEventListener("click", () => {
         map.setLayoutProperty('finaled-heat','visibility','none');
 
         toggleBtn.textContent = "Switch to Heatmap";
+
+        showDotLegend();
+
+    }
+
+});
+
+
+// -------------- Population Map Button -------------------------
+
+let popOn = false;
+
+const popBtn = document.getElementById("pop-toggle");
+
+popBtn.addEventListener("click", () => {
+
+    popOn = !popOn;
+
+    if(popOn){
+
+        // show choropleth
+        map.setLayoutProperty('pop_data_layer','visibility','visible');
+
+        popBtn.textContent = "Hide Population Map";
+
+        showPopLegend();
+
+    } else {
+
+        // hide choropleth
+        map.setLayoutProperty('pop_data_layer','visibility','none');
+
+        popBtn.textContent = "Show Population Map";
 
         showDotLegend();
 
